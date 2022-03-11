@@ -8,8 +8,8 @@ defmodule Gobarber.Appointment do
   @derive {Jason.Encoder, only: [:provider, :date]}
 
   schema "appointments" do
-    field :provider, :string
     field :date, :utc_datetime
+    belongs_to :user, Gobarber.User
 
     timestamps()
   end

@@ -9,6 +9,8 @@ defmodule Gobarber.Repo.Migrations.CreateUsersTable do
       add :cpf, :string
       add :password_hash, :string
 
+      add :appointment_id, references(:appointments)
+
       timestamps()
     end
 
