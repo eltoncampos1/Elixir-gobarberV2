@@ -10,7 +10,7 @@ import Config
 config :gobarber,
   ecto_repos: [Gobarber.Repo]
 
-config :gobarber, Gobabarber.Repo,
+config :gobarber, Gobarber.Repo,
   migration_primary_key: [type: :binary_id],
   migration_foreign_key: [type: :binary_id]
 
