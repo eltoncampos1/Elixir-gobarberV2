@@ -10,6 +10,8 @@ import Config
 config :gobarber,
   ecto_repos: [Gobarber.Repo]
 
+config :bcrypt_elixir, log_rounds: 6
+
 config :gobarber, Gobarber.Repo,
   migration_primary_key: [type: :binary_id],
   migration_foreign_key: [type: :binary_id]
