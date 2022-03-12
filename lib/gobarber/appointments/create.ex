@@ -18,7 +18,7 @@
       defp handle_insert({:ok, %Appointment{} = result}), do: {:ok, result}
       defp handle_insert({:error, result}), do: {:error, result}
 
-      defp validate_date_availability(%{provider: _provider, date: date} = _params) do
+      defp validate_date_availability(%{provider_id: _provider, date: date} = _params) do
         case Find.by_date(date) do
           %Appointment{} -> {:error, "Appointment already booked"}
           nil -> {:ok, nil}

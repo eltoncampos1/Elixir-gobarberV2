@@ -3,7 +3,7 @@ defmodule Gobarber.User do
   import Ecto.Changeset
 
   @primary_key {:id, :binary_id, autogenerate: true}
-  @required_params [:name, :email, :password]
+  @required_params [:name, :email, :password, :cpf]
 
   @derive {Jason.Encoder, only: [:name, :email]}
 

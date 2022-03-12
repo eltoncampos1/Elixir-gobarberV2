@@ -3,13 +3,16 @@ defmodule Gobarber.Appointment do
   import Ecto.Changeset
 
   @primary_key {:id, :binary_id, autogenerate: true}
-  @required_params [:provider, :date]
+  @foreign_key_type :binary_id
 
-  @derive {Jason.Encoder, only: [:provider, :date]}
+  @required_params [:provider_id, :date]
+
+  @derive {Jason.Encoder, only: [:user, :date]}
 
   schema "appointments" do
     field :date, :utc_datetime
-    belongs_to :user, Gobarber.User
+
+    belongs_to :user, Gobarber.User, foreign_key: :provider_id
 
     timestamps()
   end
