@@ -21,9 +21,13 @@ defmodule GobarberWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", GobarberWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", GobarberWeb do
+    pipe_through :api
+
+    resources "/users", UsersController
+
+    # resources "/appointments", AppointmentsController
+  end
 
   # Enables LiveDashboard only for development
   #
