@@ -5,7 +5,7 @@ defmodule Gobarber.User do
   @primary_key {:id, :binary_id, autogenerate: true}
   @required_params [:name, :email, :password, :cpf]
 
-  @derive {Jason.Encoder, only: [:name, :email]}
+  @derive {Jason.Encoder, only: [:name, :email, :cpf]}
 
   schema "users" do
     field :name, :string
@@ -26,6 +26,8 @@ defmodule Gobarber.User do
     |> validate_length(:password, min: 6)
     |> validate_length(:cpf, is: 11)
     |> validate_format(:email, ~r/@/)
+    |> unique_constraint([:email])
+    |> unique_constraint([:cpf])
     |> put_password_hash()
   end
 
