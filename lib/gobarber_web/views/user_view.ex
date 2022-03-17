@@ -1,4 +1,4 @@
-defmodule GobarberWeb.UsersView do
+defmodule GobarberWeb.UserView do
   use GobarberWeb, :view
 
   alias Gobarber.User
