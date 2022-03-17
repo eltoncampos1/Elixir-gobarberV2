@@ -14,6 +14,10 @@ defmodule GobarberWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    plug GobarberWeb.Auth.Pipeline
+  end
+
   scope "/", GobarberWeb do
     pipe_through :browser
 
@@ -24,9 +28,16 @@ defmodule GobarberWeb.Router do
   scope "/api", GobarberWeb do
     pipe_through :api
 
-    resources "/users", UsersController
+    resources "/users", UsersController, only: [:create]
 
     # resources "/appointments", AppointmentsController
+    resources "/sessions", SessionController
+  end
+
+  scope "/api", GobarberWeb do
+    pipe_through [:api, :auth]
+
+    resources "/users", UsersController
   end
 
   # Enables LiveDashboard only for development
