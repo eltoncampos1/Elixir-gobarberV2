@@ -5,7 +5,7 @@ defmodule Gobarber.User do
   @primary_key {:id, :binary_id, autogenerate: true}
   @required_params [:name, :email, :password, :cpf]
 
-  @derive {Jason.Encoder, only: [:name, :email, :cpf]}
+  @derive {Jason.Encoder, only: [:name, :email, :cpf, :id]}
 
   schema "users" do
     field :name, :string
