@@ -11,7 +11,7 @@ defmodule GobarberWeb.Auth.Guardian do
   def resource_from_claims(claims) do
     user =
       claims["sub"]
-      |> User.Get.call()
+      |> Users.Get.by_id()
 
     {:ok, user}
   end
@@ -19,7 +19,7 @@ defmodule GobarberWeb.Auth.Guardian do
   def authenticate(email, password) do
     case Session.authenticate(email, password) do
       {:ok, user} -> create_token(user)
-      _ -> {:error, :unauthenticated}
+      _ -> {:error, :unauthorized}
     end
   end
 

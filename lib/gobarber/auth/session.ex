@@ -7,11 +7,14 @@ defmodule Gobarber.Auth.Session do
         {:error, :not_found}
 
       user ->
-        if Bcrypt.verify_pass(password, user.password_hash) do
-          {:ok, user}
-        else
-          {:error, :unauthorized}
-        end
+        validate_password(password, user)
+    end
+  end
+
+  defp validate_password(password, user) do
+    case Bcrypt.verify_pass(password, user.password_hash) do
+      true -> {:ok, user}
+      false -> {:error, :unauthorized}
     end
   end
 end

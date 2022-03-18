@@ -1,7 +1,7 @@
 defmodule GobarberWeb.SessionController do
   use GobarberWeb, :controller
   alias GobarberWeb.Auth.Guardian
-  action_fallback GobarberWeb.FallbackController
+  alias GobarberWeb.FallbackController
 
   def create(conn, %{"email" => email, "password" => password}) do
     with {:ok, user, token} <- Guardian.authenticate(email, password) do

@@ -28,7 +28,7 @@ defmodule GobarberWeb.Router do
   scope "/api", GobarberWeb do
     pipe_through :api
 
-    resources "/users", UsersController, only: [:create]
+    resources "/users", UserController, only: [:create]
 
     # resources "/appointments", AppointmentsController
     resources "/sessions", SessionController
@@ -37,7 +37,7 @@ defmodule GobarberWeb.Router do
   scope "/api", GobarberWeb do
     pipe_through [:api, :auth]
 
-    resources "/users", UsersController
+    resources "/users", UserController, except: [:create]
   end
 
   # Enables LiveDashboard only for development

@@ -7,7 +7,11 @@ defmodule GobarberWeb.UserController do
   action_fallback FallbackController
 
   def index(conn, _params) do
-    render(conn, "index.html")
+    with users <- Users.List.call() do
+      conn
+      |> put_status(:ok)
+      |> render("show.json", users: users)
+    end
   end
 
   def create(conn, params) do

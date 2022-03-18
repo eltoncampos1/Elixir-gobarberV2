@@ -9,4 +9,15 @@ defmodule GobarberWeb.UserView do
       user: user
     }
   end
+
+  def render("show.json", %{users: users}) do
+    %{
+      data:
+        Enum.map(users, fn user ->
+          %{
+            user: user
+          }
+        end)
+    }
+  end
 end
