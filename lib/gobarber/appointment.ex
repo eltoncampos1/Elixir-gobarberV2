@@ -7,7 +7,7 @@ defmodule Gobarber.Appointment do
 
   @required_params [:provider_id, :date]
 
-  @derive {Jason.Encoder, only: [:user, :date]}
+  @derive {Jason.Encoder, only: [:provider_id, :date]}
 
   schema "appointments" do
     field :date, :utc_datetime

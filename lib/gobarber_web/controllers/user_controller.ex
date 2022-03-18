@@ -21,4 +21,9 @@ defmodule GobarberWeb.UserController do
       |> render("create.json", user: user)
     end
   end
+
+  def update(conn, params) do
+    IO.inspect(conn.assigns, label: "cooooooooooonnn")
+    IO.inspect(params, label: "paraaaaaaaaaaams")
+  end
 end

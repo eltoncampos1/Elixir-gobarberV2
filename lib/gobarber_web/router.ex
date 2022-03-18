@@ -11,7 +11,7 @@ defmodule GobarberWeb.Router do
   end
 
   pipeline :api do
-    plug :accepts, ["json"]
+    plug :accepts, ["json", "multipart"]
   end
 
   pipeline :auth do
@@ -30,13 +30,13 @@ defmodule GobarberWeb.Router do
 
     resources "/users", UserController, only: [:create]
 
-    # resources "/appointments", AppointmentsController
     resources "/sessions", SessionController
   end
 
   scope "/api", GobarberWeb do
     pipe_through [:api, :auth]
 
+    resources "/appointments", AppointmentController
     resources "/users", UserController, except: [:create]
   end
 

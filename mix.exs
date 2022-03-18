@@ -50,7 +50,10 @@ defmodule Gobarber.MixProject do
       {:jason, "~> 1.2"},
       {:bcrypt_elixir, "~> 3.0"},
       {:plug_cowboy, "~> 2.5"},
-      {:guardian, "~> 2.0"}
+      {:guardian, "~> 2.0"},
+      {:tzdata, "~> 1.1"},
+      {:waffle, "~> 1.1"},
+      {:waffle_ecto, "~> 0.0.9"}
     ]
   end
 

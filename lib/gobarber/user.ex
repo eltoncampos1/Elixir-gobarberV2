@@ -1,6 +1,8 @@
 defmodule Gobarber.User do
   use Ecto.Schema
+  use Waffle.Ecto.Schema
   import Ecto.Changeset
+  alias Gobarber.Users.UserAvatar
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @required_params [:name, :email, :password, :cpf]
@@ -13,7 +15,7 @@ defmodule Gobarber.User do
     field :cpf, :string
     field :password, :string, virtual: true
     field :password_hash, :string
-
+    field :avatar_url, UserAvatar.Type
     has_many :appointments, Gobarber.Appointment
 
     timestamps()
@@ -29,6 +31,12 @@ defmodule Gobarber.User do
     |> unique_constraint([:email])
     |> unique_constraint([:cpf])
     |> put_password_hash()
+  end
+
+  def avatar_changeset(struct \\ %__MODULE__{}, params) do
+    struct
+    |> cast(params, [])
+    |> cast_attachments(params, [:avatar_url])
   end
 
   defp put_password_hash(
